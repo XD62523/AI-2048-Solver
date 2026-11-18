@@ -126,5 +126,38 @@ window.addEventListener("keydown", function (e) {
   }
 });
 
+// Mobile Touch Swipe Controls
+let touchStartX = 0;
+let touchStartY = 0;
+
+const boardElement = document.getElementById("board");
+
+boardElement.addEventListener("touchstart", function(e) {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+}, { passive: true });
+
+boardElement.addEventListener("touchmove", function(e) {
+    e.preventDefault(); // Prevents the phone screen from scrolling while swiping tiles
+}, { passive: false });
+
+boardElement.addEventListener("touchend", function(e) {
+    if (!e.changedTouches.length) return;
+    
+    let dx = e.changedTouches[0].clientX - touchStartX;
+    let dy = e.changedTouches[0].clientY - touchStartY;
+    
+    // Ignore tiny accidental taps (require at least a 30px swipe)
+    if (Math.max(Math.abs(dx), Math.abs(dy)) < 30) return;
+    
+    if (Math.abs(dx) > Math.abs(dy)) {
+        // Horizontal swipe
+        handleMove(dx > 0 ? "right" : "left");
+    } else {
+        // Vertical swipe
+        handleMove(dy > 0 ? "down" : "up");
+    }
+});
+
 // Start the game on page load
 resetGame();
