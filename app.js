@@ -17,7 +17,6 @@ function resetGame() {
   statusEl.style.color = "";
 }
 
-// Draw the 4x4 board and scores onto the HTML page
 function renderBoard() {
   let gridEl = document.getElementById("grid");
   gridEl.innerHTML = "";
@@ -37,7 +36,6 @@ function renderBoard() {
   document.getElementById("best-score").textContent = bestScore;
 }
 
-// Execute a move in direction (0: Left, 1: Down, 2: Right, 3: Up)
 function handleMove(dir) {
   let sim = move(board, dir);
   if (!sim.moved) return false;
@@ -64,7 +62,6 @@ function handleMove(dir) {
   return true;
 }
 
-// Run one single AI decision step
 function stepAI() {
   if (hasWon(board) || isGameOver(board)) return;
   let depth = parseInt(document.getElementById("depth-select").value, 10);
@@ -77,7 +74,6 @@ function stepAI() {
   }
 }
 
-// Toggle continuous AI auto-play
 function toggleAI() {
   if (aiRunning) {
     stopAI();
@@ -113,7 +109,6 @@ function runAILoop() {
   }
 }
 
-// Keyboard arrow support for manual testing
 window.addEventListener("keydown", function (e) {
   if (aiRunning) return;
   let keyMap = { ArrowLeft: 0, ArrowDown: 1, ArrowRight: 2, ArrowUp: 3 };
@@ -123,8 +118,6 @@ window.addEventListener("keydown", function (e) {
   }
 });
 
-// Mobile Touch Swipe Controls (0: Left, 1: Down, 2: Right, 3: Up)
-// Mobile Touch Swipe Controls (0: Left, 1: Down, 2: Right, 3: Up)
 let touchStartX = 0;
 let touchStartY = 0;
 
@@ -154,3 +147,4 @@ gridElement.addEventListener("touchend", function (e) {
   }
 });
 
+resetGame();
