@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2048 AI Solver (DSA Project)</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="header">
+    <h1>2048 AI</h1>
+    <div class="scores">
+      <div class="score-box">
+        <span class="label">SCORE</span>
+        <span id="score">0</span>
+      </div>
+      <div class="score-box">
+        <span class="label">BEST</span>
+        <span id="best-score">0</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <button id="ai-btn" onclick="toggleAI()">Start AI</button>
+    <button onclick="stepAI()">AI Step</button>
+    <button onclick="resetGame()">Reset</button>
+    <select id="depth-select" title="Expectimax Search Depth">
+      <option value="2">Depth 2 (Fast)</option>
+      <option value="3" selected>Depth 3 (Balanced)</option>
+      <option value="4">Depth 4 (Strong)</option>
+    </select>
+  </div>
+
+  <div id="grid" class="grid-container"></div>
+  <div id="status" class="status">Press Arrow Keys or click Start AI</div>
+
+  <script src="game.js"></script>
+  <script src="ai.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
