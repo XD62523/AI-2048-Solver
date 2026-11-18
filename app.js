@@ -12,7 +12,9 @@ function resetGame() {
   spawnTile(board);
   spawnTile(board);
   renderBoard();
-  document.getElementById("status").textContent = "Press Arrow Keys or click Start AI";
+  let statusEl = document.getElementById("status");
+  statusEl.textContent = "Press Arrow Keys, Swipe, or click Start AI";
+  statusEl.style.color = "";
 }
 
 // Draw the 4x4 board and scores onto the HTML page
@@ -45,30 +47,26 @@ function handleMove(dir) {
   spawnTile(board);
   renderBoard();
 
-  // Inside handleMove(dir) in app.js (right before the isGameOver check):
-if (hasWon(board)) {
+  if (hasWon(board)) {
     stopAI();
-    document.getElementById("status").textContent = "🎉 YOU WIN! Reached 2048! Final Score: " + score;
-    document.getElementById("status").style.color = "#16a34a"; // Highlights status in green
+    let statusEl = document.getElementById("status");
+    statusEl.textContent = "🎉 YOU WIN! Reached 2048! Final Score: " + score;
+    statusEl.style.color = "#16a34a";
     return true;
-}
-
-if (isGameOver(board)) {
-    stopAI();
-    document.getElementById("status").textContent = "Game Over! Final Score: " + score;
-    return true;
-}
+  }
 
   if (isGameOver(board)) {
     stopAI();
     document.getElementById("status").textContent = "Game Over! Final Score: " + score;
+    return true;
   }
+
   return true;
 }
 
 // Run one single AI decision step
 function stepAI() {
-  if (isGameOver(board)) return;
+  if (hasWon(board) || isGameOver(board)) return;
   let depth = parseInt(document.getElementById("depth-select").value, 10);
   let bestDir = getBestMove(board, depth);
 
@@ -101,20 +99,19 @@ function stopAI() {
 }
 
 function runAILoop() {
-    if (!aiRunning) return;
-    stepAI();
-    if (!hasWon(board) && !isGameOver(board)) {
-        let depth = parseInt(document.getElementById("depth-select").value, 10);
-        let delayMap = {
-            2: 350,
-            3: 120,
-            4: 10
-        };
-        let delay = delayMap[depth] || 120;
-        aiTimer = setTimeout(runAILoop, delay);
-    }
+  if (!aiRunning) return;
+  stepAI();
+  if (!hasWon(board) && !isGameOver(board)) {
+    let depth = parseInt(document.getElementById("depth-select").value, 10);
+    let delayMap = {
+      2: 350,
+      3: 120,
+      4: 10
+    };
+    let delay = delayMap[depth] || 120;
+    aiTimer = setTimeout(runAILoop, delay);
+  }
 }
-
 
 // Keyboard arrow support for manual testing
 window.addEventListener("keydown", function (e) {
@@ -126,37 +123,34 @@ window.addEventListener("keydown", function (e) {
   }
 });
 
-// Mobile Touch Swipe Controls
+// Mobile Touch Swipe Controls (0: Left, 1: Down, 2: Right, 3: Up)
 let touchStartX = 0;
 let touchStartY = 0;
 
-const boardElement = document.getElementById("board");
+const gridElement = document.getElementById("grid");
 
-boardElement.addEventListener("touchstart", function(e) {
-    touchStartX = e.touches[0].clientX;
-    touchStartY = e.touches[0].clientY;
+gridElement.addEventListener("touchstart", function (e) {
+  touchStartX = e.touches[0].clientX;
+  touchStartY = e.touches[0].clientY;
 }, { passive: true });
 
-boardElement.addEventListener("touchmove", function(e) {
-    e.preventDefault(); // Prevents the phone screen from scrolling while swiping tiles
+gridElement.addEventListener("touchmove", function (e) {
+  e.preventDefault();
 }, { passive: false });
 
-boardElement.addEventListener("touchend", function(e) {
-    if (!e.changedTouches.length) return;
-    
-    let dx = e.changedTouches[0].clientX - touchStartX;
-    let dy = e.changedTouches[0].clientY - touchStartY;
-    
-    // Ignore tiny accidental taps (require at least a 30px swipe)
-    if (Math.max(Math.abs(dx), Math.abs(dy)) < 30) return;
-    
-    if (Math.abs(dx) > Math.abs(dy)) {
-        // Horizontal swipe
-        handleMove(dx > 0 ? "right" : "left");
-    } else {
-        // Vertical swipe
-        handleMove(dy > 0 ? "down" : "up");
-    }
+gridElement.addEventListener("touchend", function (e) {
+  if (aiRunning || !e.changedTouches.length) return;
+
+  let dx = e.changedTouches[0].clientX - touchStartX;
+  let dy = e.changedTouches[0].clientY - touchStartY;
+
+  if (Math.max(Math.abs(dx), Math.abs(dy)) < 30) return;
+
+  if (Math.abs(dx) > Math.abs(dy)) {
+    handleMove(dx > 0 ? 2 : 0); // Right (2) or Left (0)
+  } else {
+    handleMove(dy > 0 ? 1 : 3); // Down (1) or Up (3)
+  }
 });
 
 // Start the game on page load
