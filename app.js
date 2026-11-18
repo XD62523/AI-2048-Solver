@@ -124,6 +124,7 @@ window.addEventListener("keydown", function (e) {
 });
 
 // Mobile Touch Swipe Controls (0: Left, 1: Down, 2: Right, 3: Up)
+// Mobile Touch Swipe Controls (0: Left, 1: Down, 2: Right, 3: Up)
 let touchStartX = 0;
 let touchStartY = 0;
 
@@ -153,5 +154,3 @@ gridElement.addEventListener("touchend", function (e) {
   }
 });
 
-// Start the game on page load
-resetGame();
