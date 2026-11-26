@@ -1,4 +1,3 @@
-// 1. Create a 4x4 grid filled with 0s
 function createBoard() {
   let board = [];
   for (let r = 0; r < 4; r++) {
@@ -7,7 +6,6 @@ function createBoard() {
   return board;
 }
 
-// 2. Spawn a 2 (90%) or 4 (10%) on a random empty cell
 function spawnTile(board) {
   let emptyCells = [];
 
@@ -25,7 +23,6 @@ function spawnTile(board) {
   board[chosenCell.r][chosenCell.c] = Math.random() < 0.9 ? 2 : 4;
 }
 
-// 3. Slide and merge a single 1D row to the left
 function slideLeft(row) {
   let arr = row.filter(num => num !== 0);
   let scoreGained = 0;
@@ -45,7 +42,6 @@ function slideLeft(row) {
   return { newRow: arr, scoreGained: scoreGained };
 }
 
-// 4. Rotate a 4x4 board 90 degrees clockwise
 function rotateClockwise(board) {
   let newBoard = createBoard(); // Fixed: capital B
   for (let r = 0; r < 4; r++) {
@@ -56,7 +52,6 @@ function rotateClockwise(board) {
   return newBoard;
 }
 
-// 5. Execute a move (0: Left, 1: Down, 2: Right, 3: Up)
 function move(board, direction) {
   let tempBoard = board.map(row => [...row]);
 
@@ -65,7 +60,6 @@ function move(board, direction) {
     tempBoard = rotateClockwise(tempBoard);
   }
 
-  // Slide all 4 rows left
   let totalScore = 0;
   for (let r = 0; r < 4; r++) {
     let result = slideLeft(tempBoard[r]);
@@ -73,7 +67,6 @@ function move(board, direction) {
     totalScore += result.scoreGained;
   }
 
-  // Rotate back to original orientation
   for (let i = 0; i < (4 - direction) % 4; i++) {
     tempBoard = rotateClockwise(tempBoard);
   }
@@ -111,10 +104,5 @@ function isGameOver(board) {
   return true;
 }
 
-// --- TEST YOUR CODE ---
-//const board = createBoard();
-//spawnTile(board);
-//spawnTile(board);
-//console.table(board);
 //let testMove = move(board, 0);
 //console.table(testMove.newBoard);
