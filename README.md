@@ -2,7 +2,7 @@
 
 A responsive, browser-based implementation of the classic 2048 puzzle game powered by an AI solver, built as a Data Structures and Algorithms (DSA) project. Works seamlessly on both **desktop and mobile devices**—play manually or let the AI take over using adjustable search depths.
 
-🔗 **[Play Live Demo](https://github.io)**
+🔗 **[Play Live Demo](https://xd62523.github.io/AI-2048-Solver/)**
 
 ## Features & Controls
 * **Cross-Device Manual Play:** 
@@ -19,12 +19,12 @@ A responsive, browser-based implementation of the classic 2048 puzzle game power
 ## Getting Started
 
 ### Play Online
-No installation required—open the **[Live Demo](https://github.io)** in any desktop or mobile browser.
+No installation required—open the **[Live Demo](https://xd62523.github.io/AI-2048-Solver/)** in any desktop or mobile browser.
 
 ### Run Locally
-1. Click the green **Code** button on this repository and select **Download ZIP** (or clone via Git).
+1. Click the green **Code** button on this repository and select **Download ZIP**.
 2. **Extract the ZIP folder** to your computer.
-3. Double-click `index.html` to open and run the game in your web browser.
+3. Double-click `index.html` to open and run the game in any web browser.
 
 
 
