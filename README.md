@@ -4,7 +4,7 @@ An interactive 2048 game featuring a built-in AI solver with adjustable search d
 
 A browser-based implementation of the classic 2048 puzzle game powered by an intelligent AI solver. Play manually or let the AI take over using adjustable search depths.
 
-🔗 **[Live Demo](https://github.io)**
+🔗 **[Live Demo]([https://github.io](https://xd62523.github.io/AI-2048-Solver/))**
 
 ## Features
 * **Single Move Hint (`AI Step`):** Get an instant AI-calculated optimal move without automating the entire game.
@@ -16,7 +16,7 @@ A browser-based implementation of the classic 2048 puzzle game powered by an int
 ## Getting Started
 
 ### Play Online
-No installation required—just open the [Live Demo](https://github.io) in your browser.
+No installation required—just open the [Live Demo]([https://github.io](https://xd62523.github.io/AI-2048-Solver/)) in your browser.
 
 ### Run Locally
 1. Download or clone this repository.
