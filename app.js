@@ -4,7 +4,6 @@ let bestScore = 0;
 let aiRunning = false;
 let aiTimer = null;
 
-// Initialize or reset the game
 function resetGame() {
   stopAI();
   board = createBoard();
@@ -141,9 +140,9 @@ gridElement.addEventListener("touchend", function (e) {
   if (Math.max(Math.abs(dx), Math.abs(dy)) < 30) return;
 
   if (Math.abs(dx) > Math.abs(dy)) {
-    handleMove(dx > 0 ? 2 : 0); // Right (2) or Left (0)
+    handleMove(dx > 0 ? 2 : 0);
   } else {
-    handleMove(dy > 0 ? 1 : 3); // Down (1) or Up (3)
+    handleMove(dy > 0 ? 1 : 3); 
   }
 });
 
