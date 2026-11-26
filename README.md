@@ -1,6 +1,6 @@
 # 2048 AI Solver 
 
-A responsive, browser-based implementation of the classic 2048 puzzle game powered by an AI solver, built as a Data Structures and Algorithms (DSA) project. Works seamlessly on both **desktop and mobile devices**—play manually or let the AI take over using adjustable search depths.
+A responsive, browser-based implementation of the classic 2048 puzzle game powered by an AI solver, built using Data Structures and Algorithms . Works seamlessly on both **desktop and mobile devices**—play manually or let the AI take over using adjustable search depths.
 
 🔗 **[Play Live Demo](https://xd62523.github.io/AI-2048-Solver/)**
 
