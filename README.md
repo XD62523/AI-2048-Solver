@@ -1,4 +1,4 @@
-# 2048 AI Solver (DSA Project)
+# 2048 AI Solver 
 
 A responsive, browser-based implementation of the classic 2048 puzzle game powered by an AI solver, built as a Data Structures and Algorithms (DSA) project. Works seamlessly on both **desktop and mobile devices**—play manually or let the AI take over using adjustable search depths.
 
